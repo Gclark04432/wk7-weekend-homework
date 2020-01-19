@@ -4,7 +4,7 @@
     </header>
 
     <div class="container">
-      <item-level-select :selectedLevel="selectedLevel"></item-level-select>
+      <item-level-select :selectedLevel="selectedLevel" :itemTypes="itemTypes"></item-level-select>
       <item-list class="item-list" :items="items"></item-list>
       <item-detail class="item-detail" v-if="item-selected != null" :selectedItem="selectedItem"></item-detail>
       <attached-items class="attached-items" :attachedItems="attachedItems"></attached-items>
@@ -27,7 +27,8 @@ export default {
       selectedType: null,
       items: [],
       selectedItem: null,
-      attachedItems: []
+      attachedItems: [],
+      itemTypes: ['Achievement', 'Action', 'Companion', 'Emote', 'Item', 'Mount', 'Recipe', 'Status', 'Title', 'Trait']
     }
   },
   components: {

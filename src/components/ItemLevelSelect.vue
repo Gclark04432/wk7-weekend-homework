@@ -6,17 +6,7 @@
         <label for="typeSelect">Please select the type of item: </label>
         <select name="typeSelect" v-model="selectedType">
           <option disabled value selected></option>
-          <option value="Achievement">Achievement</option>
-          <option value="Action">Action</option>
-          <option value="Companion">Companion</option>
-          <option value="Emote">Emote</option>
-          <option value="Item">Item</option>
-          <option value="Leve">Leve</option>
-          <option value="Mount">Mount</option>
-          <option value="Recipe">Recipe</option>
-          <option value="Status">Status</option>
-          <option value="Title">Title</option>
-          <option value="Trait">Trait</option>
+          <option v-for="type in itemTypes" :value="type">{{ type }}</option>
         </select>
       </div>
 
@@ -46,6 +36,7 @@ export default {
       selectedType: null
     }
   },
+  props: ['itemTypes'],
   watch: {
     selectedLevel: function() {
       eventBus.$emit('level-selected', this.selectedLevel)
@@ -55,6 +46,8 @@ export default {
     }
   }
 }
+
+
 </script>
 
 <style lang="css" scoped>
