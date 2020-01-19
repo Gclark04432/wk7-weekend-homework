@@ -35,6 +35,14 @@ export default {
     eventBus.$on('item-selected', selectedItem => this.selectedItem = selectedItem)
     eventBus.$on('level-selected', selectedLevel => this.selectedLevel = selectedLevel)
 
+  },
+  watch: {
+    selectedLevel: function () {
+      fetch(`https://xivapi.com/search?filters=LevelItem=${this.selectedLevel}`)
+      .then(results => results.json())
+      .then(data => data.Results)
+      .then(itemsFromApi => this.items = itemsFromApi.filter(item => !item.Name == ""))
+    }
   }
 }
 </script>

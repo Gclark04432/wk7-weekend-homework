@@ -9,7 +9,7 @@ import { eventBus} from '../main.js';
 
 export default {
   name: 'item-list',
-  props: ['items', 'selectedLevel'],
+  props: ['items'],
   methods: {
     handleClick: function (item) {
       eventBus.$emit('item-selected', item)

@@ -1,10 +1,12 @@
 <template lang="html">
   <section>
-    <label for="levelSelect">Please select desired item level:</label>
-    <select name="levelSelect">
-      <option disable value></option>
-      <option  v-for="level in itemLevelRange"  v-model="selectedLevel">{{ level }}</option>
-    </select>
+    <form v-on:submit.prevent>
+      <label for="levelSelect">Please select desired item level:</label>
+      <select name="levelSelect" v-model="selectedLevel">
+        <option disable value></option>
+        <option  v-for="level in itemLevelRange" :value="level">{{ level }}</option>
+      </select>
+    </form>
   </section>
 
 </template>
@@ -17,12 +19,12 @@ export default {
   data: function () {
     return {
       itemLevelRange: [...Array(100).keys()],
-      selectedLevel: 0
+      selectedLevel: null
     }
   },
   watch: {
     selectedLevel: function() {
-      eventBus.$emit('level-selected', level)
+      eventBus.$emit('level-selected', this.selectedLevel)
     }
   }
 }
