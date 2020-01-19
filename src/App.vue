@@ -17,6 +17,7 @@ export default {
   data: function () {
     return {
       selectedLevel: null,
+      selectedType: null,
       items: [],
       selectedItem: {}
     }
@@ -30,11 +31,18 @@ export default {
 
     eventBus.$on('item-selected', selectedItem => this.selectedItem = selectedItem)
     eventBus.$on('level-selected', selectedLevel => this.selectedLevel = selectedLevel)
+    eventBus.$on('type-selected', selectedType => this.selectedType = selectedType)
 
   },
   watch: {
     selectedLevel: function () {
       fetch(`https://xivapi.com/search?filters=LevelItem=${this.selectedLevel}`)
+      .then(results => results.json())
+      .then(data => data.Results)
+      .then(itemsFromApi => this.items = itemsFromApi.filter(item => !item.Name == ""))
+    },
+    selectedType: function () {
+      fetch(`https://xivapi.com/${this.selectedType}`)
       .then(results => results.json())
       .then(data => data.Results)
       .then(itemsFromApi => this.items = itemsFromApi.filter(item => !item.Name == ""))

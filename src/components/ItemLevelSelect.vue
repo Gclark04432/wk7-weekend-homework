@@ -9,7 +9,7 @@
       </select>
 
       <label for="typeSelect">Please select the type of item: </label>
-      <select name="typeSelect">
+      <select name="typeSelect" v-model="selectedType">
         <option disabled value selected></option>
         <option value="Achievement">Achievement</option>
         <option value="Action">Action</option>
@@ -38,12 +38,16 @@ export default {
   data: function () {
     return {
       itemLevelRange: [...Array(100).keys()],
-      selectedLevel: null
+      selectedLevel: null,
+      selectedType: null
     }
   },
   watch: {
     selectedLevel: function() {
       eventBus.$emit('level-selected', this.selectedLevel)
+    },
+    selectedType: function () {
+      eventBus.$emit('type-selected', this.selectedType)
     }
   }
 }
