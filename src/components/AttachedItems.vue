@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <h1>Attached {{ attachedTypeToDisplay }}(s)</h1>
+    <h2>Attached {{ attachedTypeToDisplay }}(s): </h2>
     <ul>
       <li v-for="item in this.type">{{item.Name}} <icon v-on:click="removeItem(item)">❌</icon></li>
     </ul>
@@ -30,9 +30,7 @@ export default {
 <style lang="css" scoped>
 
   div {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-content: center;
+    display: flex;
   }
 
   li {

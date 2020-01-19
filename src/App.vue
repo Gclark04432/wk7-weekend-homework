@@ -94,36 +94,36 @@ export default {
         display: grid;
         grid-gap: 15px;
         grid-template-columns: auto auto auto;
-        grid-template-rows: 80px 200px;
+        grid-template-rows: 20px 30px 200px;
         justify-content: space-evenly;
       }
 
       .item-list {
         grid-column-start: 1;
         grid-column-end: 2;
-        grid-row-start: 2;
-        grid-row-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
       }
 
       .item-detail {
         grid-column-start: 2;
         grid-column-end: 3;
-        grid-row-start: 2;
-        grid-row-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
       }
 
       .attached-items {
-        grid-column-start: 3;
-        grid-column-end: 4;
-        grid-row-start: 2;
-        grid-row-end: 3;
-      }
-
-      .attached-type {
-        grid-column-start: 3;
+        grid-column-start: 2;
         grid-column-end: 4;
         grid-row-start: 1;
         grid-row-end: 2;
+      }
+
+      .attached-type {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 3;
       }
 
     </style>
