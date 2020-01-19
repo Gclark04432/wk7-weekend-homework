@@ -4,6 +4,7 @@
       <item-level-select :selectedLevel="selectedLevel"></item-level-select>
       <item-list :items="items"></item-list>
       <item-detail v-if="item-selected != null" :selectedItem="selectedItem"></item-detail>
+      <attached-items :attachedItems="attachedItems"></attached-items>
     </div>
   </body>
 </template>
@@ -23,7 +24,7 @@ export default {
       selectedType: null,
       items: [],
       selectedItem: null,
-      attachedItems: null
+      attachedItems: []
     }
   },
   components: {
@@ -37,6 +38,7 @@ export default {
     eventBus.$on('item-selected', selectedItem => this.selectedItem = selectedItem)
     eventBus.$on('level-selected', selectedLevel => this.selectedLevel = selectedLevel)
     eventBus.$on('type-selected', selectedType => this.selectedType = selectedType)
+    eventBus.$on('attach-item', selectedItem => this.attachedItems.push(selectedItem))
 
   },
   watch: {
