@@ -2,7 +2,7 @@
   <div>
     <h1>Attached {{ attachedTypeToDisplay }}(s)</h1>
     <ul>
-      <li v-for="item in attachedItems">{{item.Name}} <icon v-on:click="removeItem(item)">❌</icon></li>
+      <li v-for="item in this.type">{{item.Name}} <icon v-on:click="removeItem(item)">❌</icon></li>
     </ul>
 
   </div>
@@ -17,6 +17,11 @@ export default {
   methods: {
     removeItem: function (item) {
       eventBus.$emit('remove-item', item)
+    }
+  },
+  computed: {
+    type: function () {
+      return this.attachedItems.filter(item => item.type == this.attachedTypeToDisplay)
     }
   }
 }
