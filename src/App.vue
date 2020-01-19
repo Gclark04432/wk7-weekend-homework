@@ -3,7 +3,7 @@
     <div class="">
       <item-level-select :selectedLevel="selectedLevel"></item-level-select>
       <item-list :items="items"></item-list>
-      <item-detail :selectedItem="selectedItem"></item-detail>
+      <item-detail v-if="item-selected != null" :selectedItem="selectedItem"></item-detail>
     </div>
   </body>
 </template>
@@ -13,6 +13,7 @@ import { eventBus } from './main.js';
 import ItemList from './components/ItemList.vue';
 import ItemDetail from './components/ItemDetail.vue';
 import ItemLevelSelect from './components/ItemLevelSelect.vue';
+import AttachedItems from './components/AttachedItems.vue';
 
 export default {
   name: 'app',
@@ -21,13 +22,15 @@ export default {
       selectedLevel: null,
       selectedType: null,
       items: [],
-      selectedItem: {}
+      selectedItem: null,
+      attachedItems: null
     }
   },
   components: {
     'item-list': ItemList,
     'item-detail': ItemDetail,
-    'item-level-select': ItemLevelSelect
+    'item-level-select': ItemLevelSelect,
+    'attached-items': AttachedItems
   },
   mounted: function () {
 
