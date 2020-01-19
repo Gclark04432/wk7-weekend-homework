@@ -1,6 +1,6 @@
 <template lang="html">
   <ul>
-    <li v-for="item in items" v-on:click="handleClick(item)"> {{item.Name}} </li>
+    <li class="name" v-for="item in items" v-on:click="handleClick(item)"> {{item.Name}} </li>
   </ul>
 </template>
 
@@ -32,6 +32,10 @@ ul {
   width: 250px;
   background: rgba(204, 204, 204, 0.5);
   border: 2px solid darkgoldenrod;
-  }
+}
 
-  </style>
+.name {
+  text-transform: capitalize;
+}
+
+</style>

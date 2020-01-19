@@ -2,7 +2,7 @@
   <div>
     <h2>Attached {{ attachedTypeToDisplay }}(s): </h2>
     <ul>
-      <li v-for="item in this.type">{{item.Name}} <icon v-on:click="removeItem(item)">❌</icon></li>
+      <li class="name" v-for="item in this.type">{{item.Name}} <icon v-on:click="removeItem(item)">❌</icon></li>
     </ul>
 
   </div>
@@ -37,6 +37,10 @@ export default {
   li {
     list-style: none;
     display: inline-flex;
+  }
+
+  .name {
+    text-transform: capitalize;
   }
 
 </style>

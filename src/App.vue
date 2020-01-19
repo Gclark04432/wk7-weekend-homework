@@ -11,10 +11,12 @@
       class="attached-items" :attachedItems="attachedItems" :attachedTypeToDisplay="attachedTypeToDisplay"
       v-if="!attachedItems.length == 0">
     </attached-items>
+    <span>View Attchments by Type: 
     <select class="attached-type" v-model="attachedTypeToDisplay">
       <!-- <option v-if="selectedItem" :value="this.selectedItem.type" selected>{{ this.selectedItem.type }}</option> -->
       <option v-for="type in itemTypes" :value="type">{{ type }}</option>
     </select>
+    </span>
     <avatar class="avatar"></avatar>
   </div>
 </body>
