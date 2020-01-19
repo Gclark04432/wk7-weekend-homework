@@ -11,13 +11,7 @@ import { eventBus } from '../main.js';
 
 export default {
   name: 'item-detail',
-  data: function () {
-    return {
-    }
-  },
   props: ['selectedItem'],
-  mounted: function () {
-  }
 }
 </script>
 
