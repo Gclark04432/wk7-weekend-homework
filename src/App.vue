@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <item-level-select></item-level-select>
+    <item-level-select :selectedLevel="selectedLevel"></item-level-select>
     <item-list :items="items"></item-list>
     <item-detail :selectedItem="selectedItem"></item-detail>
   </div>
@@ -33,7 +33,7 @@ export default {
     .then(itemsFromApi => this.items = itemsFromApi.filter(item => !item.Name == ""))
 
     eventBus.$on('item-selected', selectedItem => this.selectedItem = selectedItem)
-    eventBus.$on('level-selected', slectedLevel => this.selectedLevel = selectedLevel)
+    eventBus.$on('level-selected', selectedLevel => this.selectedLevel = selectedLevel)
 
   }
 }
