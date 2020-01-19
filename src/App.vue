@@ -1,5 +1,8 @@
 <template>
   <body>
+    <header>
+    </header>
+
     <div class="">
       <item-level-select :selectedLevel="selectedLevel"></item-level-select>
       <item-list :items="items"></item-list>
@@ -63,6 +66,17 @@ export default {
         background-image: url("../public/background.png");
         background-repeat: no-repeat;
         background-size: cover;
-        height: 700px;
+        height: 100%;
+        width: 100%;
+        position: fixed;
       }
+
+      header {
+        background-image: url("../public/banner.png");
+        height: 100px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center center;
+      }
+
     </style>

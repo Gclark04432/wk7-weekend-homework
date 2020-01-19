@@ -2,7 +2,7 @@
   <div>
     <h1>{{selectedItem.Name}}</h1>
     <img :src="'https://xivapi.com/' + selectedItem.Icon" alt="NO ICON AVAILABLE">
-    <button type="button" v-on:click="attachItem" value="selectedItem">Show Me</button>
+    <button type="button" v-on:click="attachItem" value="selectedItem">Attach Item</button>
   </div>
 
 </template>
