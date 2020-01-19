@@ -2,7 +2,7 @@
   <section>
     <label for="levelSelect">Please select desired item level:</label>
     <select name="levelSelect" v-on:change="handleChange">
-      <option  v-for="level in itemLevelRange" v-model:"selectedItemLevel">{{ level }}</option>
+      <option  v-for="level in itemLevelRange" v-model="selectedItemLevel">{{ level }}</option>
     </select>
   </section>
 
@@ -16,7 +16,7 @@ export default {
   data: function () {
     return {
       itemLevelRange: [...Array(100).keys()],
-      selectedItemLevel: null
+      selectedItemLevel: 0
     }
   },
   methods: {

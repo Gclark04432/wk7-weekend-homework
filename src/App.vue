@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <item-level-select :selectedLevel="selectedLevel"></item-level-select>
+    <item-level-select></item-level-select>
     <item-list :items="items"></item-list>
     <item-detail :selectedItem="selectedItem"></item-detail>
   </div>
@@ -27,7 +27,7 @@ export default {
     'item-level-select': ItemLevelSelect
   },
   mounted: function () {
-    fetch('https://xivapi.com/item')
+    fetch(`https://xivapi.com/search?filters=LevelItem=${this.selectedLevel}`)
     .then(results => results.json())
     .then(data => data.Results)
     .then(itemsFromApi => this.items = itemsFromApi.filter(item => !item.Name == ""))
