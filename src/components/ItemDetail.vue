@@ -16,7 +16,12 @@ export default {
   props: ['selectedItem'],
   methods: {
     attachItem: function () {
+      // validateAttachment(this.selectedItem)
       eventBus.$emit('attach-item', this.selectedItem)
+    },
+    validateAttachment: function () {
+      if (this.selectedItem.type == "title")
+      console.log("Test is working");
     }
   }
 }
@@ -30,17 +35,23 @@ div {
   flex-direction: column;
   justify-content: center;
   align-content: center;
+  font-family: fantasy, sans-serif;
 }
 
 button {
   background-color: darkgoldenrod;
   color: white;
   text-emphasis: bold;
-  font-size: 15px;;
+  font-size: 15px;
 }
 
 .name {
   text-transform: capitalize;
+}
+
+img {
+  height: 150px;
+  width: 150px;
 }
 
 </style>

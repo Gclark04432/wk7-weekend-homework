@@ -6,14 +6,13 @@
     <div class="container">
       <item-type-select class="select" :itemTypes="itemTypes"></item-type-select>
       <item-list class="item-list" :items="items"></item-list>
-      <item-detail class="item-detail" v-if="item-selected != null" :selectedItem="selectedItem"></item-detail>
+      <item-detail class="item-detail" v-if="selectedItem != ''" :selectedItem="selectedItem"></item-detail>
       <attached-items
       class="attached-items" :attachedItems="attachedItems" :attachedTypeToDisplay="attachedTypeToDisplay"
       v-if="!attachedItems.length == 0">
     </attached-items>
-    <span>View Attchments by Type: 
+    <span>View Attchments by Type:
     <select class="attached-type" v-model="attachedTypeToDisplay">
-      <!-- <option v-if="selectedItem" :value="this.selectedItem.type" selected>{{ this.selectedItem.type }}</option> -->
       <option v-for="type in itemTypes" :value="type">{{ type }}</option>
     </select>
     </span>
@@ -36,7 +35,7 @@ export default {
     return {
       selectedType: null,
       items: [],
-      selectedItem: null,
+      selectedItem: "",
       attachedItems: [],
       attachedTypeToDisplay: null,
       itemTypes: ['Achievement', 'Action', 'Companion', 'Emote', 'Item', 'Mount', 'Recipe', 'Status', 'Title', 'Trait']
@@ -91,7 +90,7 @@ export default {
     height: 100%;
     width: 100%;
     position: fixed;
-    padding: 5px;
+    padding: 8px;
   }
 
   header {
@@ -104,7 +103,7 @@ export default {
 
   .container {
     display: grid;
-    grid-gap: 15px;
+    grid-gap: 20px;
     grid-template-columns: 1fr 1fr 2fr 1fr;
     grid-template-rows: 20px 30px 200px;
     justify-content: space-evenly;

@@ -2,7 +2,7 @@
   <div>
     <h2>Attached {{ attachedTypeToDisplay }}(s): </h2>
     <ul>
-      <li class="name" v-for="item in this.type">{{item.Name}} <icon v-on:click="removeItem(item)">❌</icon></li>
+      <li class="name" v-for="item in this.type">{{item.Name}} <span v-on:click="removeItem(item)">❌</span></li>
     </ul>
 
   </div>
@@ -32,6 +32,7 @@ export default {
   div {
     display: flex;
     align-items: center;
+    font-family: fantasy, sans-serif;
   }
 
   li {
