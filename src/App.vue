@@ -4,7 +4,7 @@
     </header>
 
     <div class="container">
-      <item-level-select :selectedLevel="selectedLevel" :itemTypes="itemTypes"></item-level-select>
+      <item-type-select :itemTypes="itemTypes"></item-type-select>
       <item-list class="item-list" :items="items"></item-list>
       <item-detail class="item-detail" v-if="item-selected != null" :selectedItem="selectedItem"></item-detail>
       <attached-items
@@ -12,7 +12,7 @@
       v-if="!attachedItems.length == 0">
     </attached-items>
     <select class="attached-type" v-model="attachedTypeToDisplay">
-      <option disabled selected>Filter by type attached</option>
+      <!-- <option v-if="selectedItem" :value="this.selectedItem.type" selected>{{ this.selectedItem.type }}</option> -->
       <option v-for="type in itemTypes" :value="type">{{ type }}</option>
     </select>
   </div>
@@ -23,14 +23,13 @@
 import { eventBus } from './main.js';
 import ItemList from './components/ItemList.vue';
 import ItemDetail from './components/ItemDetail.vue';
-import ItemLevelSelect from './components/ItemLevelSelect.vue';
+import ItemTypeSelect from './components/ItemTypeSelect.vue';
 import AttachedItems from './components/AttachedItems.vue';
 
 export default {
   name: 'app',
   data: function () {
     return {
-      selectedLevel: null,
       selectedType: null,
       items: [],
       selectedItem: null,
@@ -42,13 +41,12 @@ export default {
   components: {
     'item-list': ItemList,
     'item-detail': ItemDetail,
-    'item-level-select': ItemLevelSelect,
+    'item-type-select': ItemTypeSelect,
     'attached-items': AttachedItems
   },
   mounted: function () {
 
     eventBus.$on('item-selected', selectedItem => this.selectedItem = selectedItem)
-    eventBus.$on('level-selected', selectedLevel => this.selectedLevel = selectedLevel)
     eventBus.$on('type-selected', selectedType => this.selectedType = selectedType)
     eventBus.$on('attach-item', selectedItem => this.attachedItems.push(selectedItem))
     eventBus.$on('remove-item', item => this.attachedItems.pop(item))
@@ -57,16 +55,9 @@ export default {
   methods: {
     appendType: function () {
       this.items.forEach(item => item.type = this.selectedType)
-      console.log(this.selectedType);
     }
   },
   watch: {
-    selectedLevel: function () {
-      fetch(`https://xivapi.com/search?filters=LevelItem=${this.selectedLevel}`)
-        .then(results => results.json())
-        .then(data => data.Results)
-        .then(itemsFromApi => this.items = itemsFromApi.filter(item => !item.Name == ""))
-      },
       selectedType: function () {
         fetch(`https://xivapi.com/${this.selectedType}`)
           .then(results => results.json())

@@ -10,15 +10,6 @@
         </select>
       </div>
 
-      <div class="select">
-        <label for="levelSelect">Please select desired item level: </label>
-        <select name="levelSelect" v-model="selectedLevel">
-          <option disabled value selected></option>
-          <option  v-for="level in itemLevelRange" :value="level">{{ level }}</option>
-        </select>
-      </div>
-
-
     </form>
   </section>
 
@@ -28,19 +19,14 @@
 import { eventBus } from '../main.js';
 
 export default {
-  name: 'item-level-select',
+  name: 'item-type-select',
   data: function () {
     return {
-      itemLevelRange: [...Array(100).keys()],
-      selectedLevel: null,
       selectedType: null
     }
   },
   props: ['itemTypes'],
   watch: {
-    selectedLevel: function() {
-      eventBus.$emit('level-selected', this.selectedLevel)
-    },
     selectedType: function () {
       eventBus.$emit('type-selected', this.selectedType)
     }

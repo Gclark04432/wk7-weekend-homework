@@ -29,7 +29,7 @@ ul {
   overflow: scroll;
   list-style: none;
   height: 400px;
-  width: 200px;
+  width: 250px;
   background: rgba(204, 204, 204, 0.5);
   border: 2px solid darkgoldenrod;
   }
