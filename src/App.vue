@@ -3,11 +3,11 @@
     <header>
     </header>
 
-    <div class="">
+    <div class="container">
       <item-level-select :selectedLevel="selectedLevel"></item-level-select>
-      <item-list :items="items"></item-list>
-      <item-detail v-if="item-selected != null" :selectedItem="selectedItem"></item-detail>
-      <attached-items :attachedItems="attachedItems"></attached-items>
+      <item-list class="item-list" :items="items"></item-list>
+      <item-detail class="item-detail" v-if="item-selected != null" :selectedItem="selectedItem"></item-detail>
+      <attached-items class="attached-items" :attachedItems="attachedItems"></attached-items>
     </div>
   </body>
 </template>
@@ -69,6 +69,7 @@ export default {
         height: 100%;
         width: 100%;
         position: fixed;
+        padding: 5px;
       }
 
       header {
@@ -77,6 +78,34 @@ export default {
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center center;
+      }
+
+      .container {
+        display: grid;
+        grid-gap: 15px;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: 80px 200px;
+      }
+
+      .item-list {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+
+      .item-detail {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+
+      .attached-items {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 2;
+        grid-row-end: 3;
       }
 
     </style>

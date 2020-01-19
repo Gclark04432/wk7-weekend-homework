@@ -2,6 +2,7 @@
   <div>
     <h1>{{selectedItem.Name}}</h1>
     <img :src="'https://xivapi.com/' + selectedItem.Icon" alt="NO ICON AVAILABLE">
+    <br>
     <button type="button" v-on:click="attachItem" value="selectedItem">Attach Item</button>
   </div>
 
@@ -23,4 +24,11 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+  div {
+    display: block;
+    justify-content: center;
+    align-content: center;
+  }
+
 </style>
