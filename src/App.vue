@@ -42,6 +42,7 @@ export default {
     eventBus.$on('level-selected', selectedLevel => this.selectedLevel = selectedLevel)
     eventBus.$on('type-selected', selectedType => this.selectedType = selectedType)
     eventBus.$on('attach-item', selectedItem => this.attachedItems.push(selectedItem))
+    eventBus.$on('remove-item', item => this.attachedItems.pop(item))
 
   },
   watch: {
@@ -85,6 +86,7 @@ export default {
         grid-gap: 15px;
         grid-template-columns: auto auto auto;
         grid-template-rows: 80px 200px;
+        justify-content: space-evenly;
       }
 
       .item-list {
