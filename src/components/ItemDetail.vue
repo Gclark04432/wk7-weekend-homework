@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <h1>{{selectedItem.Name}}</h1>
-    <img :src="'https://xivapi.com/' + selectedItem.Icon">
+    <img :src="'https://xivapi.com/' + selectedItem.Icon" alt="NO ICON AVAILABLE">
     <button type="button" v-on:click="attachItem" value="selectedItem">Show Me</button>
   </div>
 

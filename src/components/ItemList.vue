@@ -1,7 +1,7 @@
 <template lang="html">
   <ul>
-  <li v-for="item in items" v-on:click="handleClick(item)"> {{item.Name}} </li>
-</ul>
+    <li v-for="item in items" v-on:click="handleClick(item)"> {{item.Name}} </li>
+  </ul>
 </template>
 
 <script>
@@ -26,9 +26,12 @@ export default {
 <style lang="css" scoped>
 
 ul {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  overflow: scroll;
   list-style: none;
-}
+  height: 400px;
+  width: 200px;
+  background: rgba(204, 204, 204, 0.5);
+  border: 2px solid darkgoldenrod;
+  }
 
-</style>
+  </style>
