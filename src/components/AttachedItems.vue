@@ -31,10 +31,12 @@ export default {
 
   div {
     display: flex;
+    align-items: center;
   }
 
   li {
     list-style: none;
+    display: inline-flex;
   }
 
 </style>

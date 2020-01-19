@@ -15,6 +15,7 @@
       <!-- <option v-if="selectedItem" :value="this.selectedItem.type" selected>{{ this.selectedItem.type }}</option> -->
       <option v-for="type in itemTypes" :value="type">{{ type }}</option>
     </select>
+    <avatar class="avatar"></avatar>
   </div>
 </body>
 </template>
@@ -25,6 +26,7 @@ import ItemList from './components/ItemList.vue';
 import ItemDetail from './components/ItemDetail.vue';
 import ItemTypeSelect from './components/ItemTypeSelect.vue';
 import AttachedItems from './components/AttachedItems.vue';
+import Avatar from './components/Avatar.vue';
 
 export default {
   name: 'app',
@@ -42,7 +44,8 @@ export default {
     'item-list': ItemList,
     'item-detail': ItemDetail,
     'item-type-select': ItemTypeSelect,
-    'attached-items': AttachedItems
+    'attached-items': AttachedItems,
+    'avatar': Avatar
   },
   mounted: function () {
 
@@ -93,7 +96,7 @@ export default {
       .container {
         display: grid;
         grid-gap: 15px;
-        grid-template-columns: auto auto auto;
+        grid-template-columns: 1fr 1fr 2fr;
         grid-template-rows: 20px 30px 200px;
         justify-content: space-evenly;
       }
@@ -124,6 +127,13 @@ export default {
         grid-column-end: 2;
         grid-row-start: 2;
         grid-row-end: 3;
+      }
+
+      .avatar {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 3;
+        grid-row-end: 4;
       }
 
     </style>
