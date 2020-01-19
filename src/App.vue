@@ -4,7 +4,7 @@
     </header>
 
     <div class="container">
-      <item-type-select :itemTypes="itemTypes"></item-type-select>
+      <item-type-select class="select" :itemTypes="itemTypes"></item-type-select>
       <item-list class="item-list" :items="items"></item-list>
       <item-detail class="item-detail" v-if="item-selected != null" :selectedItem="selectedItem"></item-detail>
       <attached-items
@@ -51,7 +51,14 @@ export default {
 
     eventBus.$on('item-selected', selectedItem => this.selectedItem = selectedItem)
     eventBus.$on('type-selected', selectedType => this.selectedType = selectedType)
-    eventBus.$on('attach-item', selectedItem => this.attachedItems.push(selectedItem))
+    eventBus.$on('attach-item', selectedItem => {
+      if (!this.attachedItems.includes(selectedItem)) {
+        this.attachedItems.push(selectedItem)
+      }
+      else {
+        alert("Already Attached")
+      }
+    })
     eventBus.$on('remove-item', item => this.attachedItems.pop(item))
 
   },
@@ -61,79 +68,87 @@ export default {
     }
   },
   watch: {
-      selectedType: function () {
-        fetch(`https://xivapi.com/${this.selectedType}`)
-          .then(results => results.json())
-          .then(data => data.Results)
-          .then(itemsFromApi => {
-            this.items = itemsFromApi.filter(item => !item.Name == "")
-            this.appendType()
-          })
-        }
+    selectedType: function () {
+      fetch(`https://xivapi.com/${this.selectedType}`)
+        .then(results => results.json())
+        .then(data => data.Results)
+        .then(itemsFromApi => {
+          this.items = itemsFromApi.filter(item => !item.Name == "")
+          this.appendType()
+        })
       }
     }
-    </script>
+  }
+  </script>
 
-    <style lang="css" scoped>
-      body {
-        background-image: url("../public/background.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 100%;
-        width: 100%;
-        position: fixed;
-        padding: 5px;
-      }
+  <style lang="css" scoped>
+  body {
+    background-image: url("../public/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    padding: 5px;
+  }
 
-      header {
-        background-image: url("../public/banner.png");
-        height: 100px;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center center;
-      }
+  header {
+    background-image: url("../public/banner.png");
+    height: 100px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+  }
 
-      .container {
-        display: grid;
-        grid-gap: 15px;
-        grid-template-columns: 1fr 1fr 2fr;
-        grid-template-rows: 20px 30px 200px;
-        justify-content: space-evenly;
-      }
+  .container {
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: 1fr 1fr 2fr 1fr;
+    grid-template-rows: 20px 30px 200px;
+    justify-content: space-evenly;
+  }
 
-      .item-list {
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 3;
-        grid-row-end: 4;
-      }
+  .item-list {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
 
-      .item-detail {
-        grid-column-start: 2;
-        grid-column-end: 3;
-        grid-row-start: 3;
-        grid-row-end: 4;
-      }
+  .item-detail {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
 
-      .attached-items {
-        grid-column-start: 2;
-        grid-column-end: 4;
-        grid-row-start: 1;
-        grid-row-end: 2;
-      }
+  .attached-items {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
 
-      .attached-type {
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 2;
-        grid-row-end: 3;
-      }
+  .attached-type {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
 
-      .avatar {
-        grid-column-start: 3;
-        grid-column-end: 4;
-        grid-row-start: 3;
-        grid-row-end: 4;
-      }
+  .avatar {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
 
-    </style>
+  .select {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    align-self: flex-end;
+  }
+
+  </style>
