@@ -54,4 +54,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
+  form {
+    display: flex;
+    justify-content: space-between;
+  }
 </style>

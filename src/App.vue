@@ -1,9 +1,11 @@
 <template>
-  <div class="">
-    <item-level-select :selectedLevel="selectedLevel"></item-level-select>
-    <item-list :items="items"></item-list>
-    <item-detail :selectedItem="selectedItem"></item-detail>
-  </div>
+  <body>
+    <div class="">
+      <item-level-select :selectedLevel="selectedLevel"></item-level-select>
+      <item-list :items="items"></item-list>
+      <item-detail :selectedItem="selectedItem"></item-detail>
+    </div>
+  </body>
 </template>
 
 <script>
@@ -37,19 +39,25 @@ export default {
   watch: {
     selectedLevel: function () {
       fetch(`https://xivapi.com/search?filters=LevelItem=${this.selectedLevel}`)
-      .then(results => results.json())
-      .then(data => data.Results)
-      .then(itemsFromApi => this.items = itemsFromApi.filter(item => !item.Name == ""))
-    },
-    selectedType: function () {
-      fetch(`https://xivapi.com/${this.selectedType}`)
-      .then(results => results.json())
-      .then(data => data.Results)
-      .then(itemsFromApi => this.items = itemsFromApi.filter(item => !item.Name == ""))
+        .then(results => results.json())
+        .then(data => data.Results)
+        .then(itemsFromApi => this.items = itemsFromApi.filter(item => !item.Name == ""))
+      },
+      selectedType: function () {
+        fetch(`https://xivapi.com/${this.selectedType}`)
+          .then(results => results.json())
+          .then(data => data.Results)
+          .then(itemsFromApi => this.items = itemsFromApi.filter(item => !item.Name == ""))
+        }
+      }
     }
-  }
-}
-</script>
+    </script>
 
-<style lang="css" scoped>
-</style>
+    <style lang="css" scoped>
+      body {
+        background-image: url("../public/background.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 700px;
+      }
+    </style>
