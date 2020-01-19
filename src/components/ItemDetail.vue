@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <h1>{{selectedItem.Name}}</h1>
-    <h3>{{selectedItem.Icon}}</h3>
+    <img :src="'https://xivapi.com/' + selectedItem.Icon">
   </div>
 
 </template>

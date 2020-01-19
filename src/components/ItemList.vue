@@ -9,6 +9,11 @@ import { eventBus} from '../main.js';
 
 export default {
   name: 'item-list',
+  data: function () {
+    return {
+      itemType: null
+    }
+  },
   props: ['items'],
   methods: {
     handleClick: function (item) {
