@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <h2>Attached Items: </h2>
+    <h1>Attached {{ attachedTypeToDisplay }}(s)</h1>
     <ul>
       <li v-for="item in attachedItems">{{item.Name}} <icon v-on:click="removeItem(item)">❌</icon></li>
     </ul>
@@ -13,7 +13,7 @@ import { eventBus } from '../main.js';
 
 export default {
   name: 'attached-items',
-  props: ['attachedItems'],
+  props: ['attachedItems', 'attachedTypeToDisplay'],
   methods: {
     removeItem: function (item) {
       eventBus.$emit('remove-item', item)
@@ -23,7 +23,15 @@ export default {
 </script>
 
 <style lang="css" scoped>
-span {
-  z-index: 1;
-}
+
+  div {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
+
+  li {
+    list-style: none;
+  }
+
 </style>
