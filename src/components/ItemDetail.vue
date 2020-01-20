@@ -13,15 +13,18 @@ import { eventBus } from '../main.js';
 
 export default {
   name: 'item-detail',
-  props: ['selectedItem'],
+  props: ['selectedItem', 'attachedItems'],
   methods: {
-    attachItem: function () {
-      // validateAttachment(this.selectedItem)
-      eventBus.$emit('attach-item', this.selectedItem)
-    },
     validateAttachment: function () {
-      if (this.selectedItem.type == "title")
-      console.log("Test is working");
+      const titleCheck = this.attachedItems.filter(item => item.type == "Title")
+
+      if (this.selectedItem.type != "Title" || titleCheck.length == 0) {
+        eventBus.$emit('attach-item', this.selectedItem)
+        console.log("Test is working")
+      }
+    },
+    attachItem: function () {
+      this.validateAttachment()
     }
   }
 }
